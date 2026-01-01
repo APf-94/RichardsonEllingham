@@ -100,25 +100,27 @@ def calculate_dg_with_phases(T_array, dH_298, dS_298, metal_key, n_m):
 st.title("Richardson-Ellingham Diagramm Generator")
 st.markdown("Interaktive Thermodynamik basierend auf NBS-Tabellen.")
 
-GITHUB_URL = "https://raw.githubusercontent.com/APf-94/main/RichardsonEllingham/NBS_Tables_Library.xlsx"
+# WICHTIG: Prüfe in deinem Browser, ob dieser Link die Datei wirklich lädt!
+USER = "APf-94"
+REPO = "RichardsonEllingham" # Falls dein Repo anders heißt, hier anpassen!
+FILENAME = "NBS_Tables_Library.xlsx"
+
+GITHUB_URL = f"https://raw.githubusercontent.com/{USER}/{REPO}/main/{FILENAME}"
 
 st.sidebar.header("Data Source")
 uploaded_file = st.sidebar.file_uploader("Upload own NBS table (optional)", type=["xlsx"])
 
+# 1. Daten laden (Entweder Upload ODER GitHub)
 if uploaded_file:
     df = load_data(uploaded_file)
     st.sidebar.success("Using uploaded file")
 else:
     try:
-        # Hier holen wir die Daten direkt von GitHub
         df = load_data(GITHUB_URL)
-        st.sidebar.success("Loaded default NBS library from GitHub")
+        st.sidebar.success("Loaded default library from GitHub")
     except Exception as e:
-        st.error(f"Could not load default data from GitHub. Please upload manually. Error: {e}")
-        st.stop() # App stoppt hier, wenn gar keine Daten da sind
-
-if uploaded_file:
-    df = load_data(uploaded_file)
+        st.error(f"Error: Could not find the file on GitHub. {e}")
+        st.stop()
     
     # Alle angefragten Reaktionen (Normiert auf 1 Mol O2)
     # Format: "Label": (Metall_Formel, Oxid_Formel, n_Metall, n_Oxid)
@@ -226,6 +228,7 @@ if uploaded_file:
 else:
 
     st.info("Bitte lade die Datei 'NBS_Tables Library.xlsx' hoch, um die Berechnungen zu starten.")
+
 
 
 
