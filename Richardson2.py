@@ -100,7 +100,7 @@ def calculate_dg_with_phases(T_array, dH_298, dS_298, metal_key, n_m):
 st.title("Richardson-Ellingham Diagramm Generator")
 st.markdown("Interaktive Thermodynamik basierend auf NBS-Tabellen.")
 
-GITHUB_URL = "https://raw.githubusercontent.com/NUTZERNAME/REPO/main/NBS_Tables%20Library.xlsx"
+GITHUB_URL = "https://raw.githubusercontent.com/APf-94/RichardsonEllingham/NBS_Tables%20Library.xlsx"
 
 st.sidebar.header("Data Source")
 uploaded_file = st.sidebar.file_uploader("Upload own NBS table (optional)", type=["xlsx"])
@@ -226,3 +226,4 @@ if uploaded_file:
 else:
 
     st.info("Bitte lade die Datei 'NBS_Tables Library.xlsx' hoch, um die Berechnungen zu starten.")
+
