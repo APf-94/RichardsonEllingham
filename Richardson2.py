@@ -100,7 +100,22 @@ def calculate_dg_with_phases(T_array, dH_298, dS_298, metal_key, n_m):
 st.title("Richardson-Ellingham Diagramm Generator")
 st.markdown("Interaktive Thermodynamik basierend auf NBS-Tabellen.")
 
-uploaded_file = st.sidebar.file_uploader("NBS Excel Datei hochladen", type=["xlsx"])
+GITHUB_URL = "https://raw.githubusercontent.com/NUTZERNAME/REPO/main/NBS_Tables%20Library.xlsx"
+
+st.sidebar.header("Data Source")
+uploaded_file = st.sidebar.file_uploader("Upload own NBS table (optional)", type=["xlsx"])
+
+if uploaded_file:
+    df = load_data(uploaded_file)
+    st.sidebar.success("Using uploaded file")
+else:
+    try:
+        # Hier holen wir die Daten direkt von GitHub
+        df = load_data(GITHUB_URL)
+        st.sidebar.success("Loaded default NBS library from GitHub")
+    except Exception as e:
+        st.error(f"Could not load default data from GitHub. Please upload manually. Error: {e}")
+        st.stop() # App stoppt hier, wenn gar keine Daten da sind
 
 if uploaded_file:
     df = load_data(uploaded_file)
@@ -209,4 +224,5 @@ if uploaded_file:
                                file_name="ellingham_diagramm.png", mime="image/png")
 
 else:
+
     st.info("Bitte lade die Datei 'NBS_Tables Library.xlsx' hoch, um die Berechnungen zu starten.")
