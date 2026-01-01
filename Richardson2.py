@@ -105,7 +105,7 @@ USER = "APf-94"
 REPO = "RichardsonEllingham" # Falls dein Repo anders heißt, hier anpassen!
 FILENAME = "NBS_Tables_Library.xlsx"
 
-GITHUB_URL = f"https://raw.githubusercontent.com/{USER}/{REPO}/main/{FILENAME}"
+GITHUB_URL = f"https://raw.githubusercontent.com/{USER}/{REPO}/blob/main/{FILENAME}"
 
 st.sidebar.header("Data Source")
 uploaded_file = st.sidebar.file_uploader("Upload own NBS table (optional)", type=["xlsx"])
@@ -228,6 +228,7 @@ else:
 else:
 
     st.info("Bitte lade die Datei 'NBS_Tables Library.xlsx' hoch, um die Berechnungen zu starten.")
+
 
 
 
