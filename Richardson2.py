@@ -206,8 +206,8 @@ else:
     # Layout Verschönerung
     fig.update_layout(
         title="Richardson-Ellingham Diagram (normalized to 1 Mol O₂)",
-        xaxis_title="Temperatur [°C]",
-        yaxis_title="ΔG° [kJ / mol O₂]",
+        xaxis_title="Temperature / °C",
+        yaxis_title="ΔG° / kJ / mol O₂",
         hovermode="x unified",
         height=800,
         template="plotly_white"
@@ -220,6 +220,7 @@ else:
     #img_bytes = fig.to_image(format="png", width=1200, height=800)
     #st.sidebar.download_button("Diagramm als PNG exportieren", data=img_bytes, 
     #                           file_name="ellingham_diagramm.png", mime="image/png")
+
 
 
 
