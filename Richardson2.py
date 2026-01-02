@@ -174,7 +174,7 @@ h_co2, s_co2 = get_thermo_values(df, "CO2", "g")
 if h_co2:
     dg_co_eff = (2*h_co2 - 2*h_co) - T_kelvin*(2*s_co2 - 2*s_co - s_o2) + R * T_kelvin * np.log((1/co_ratio)**2)
     fig.add_trace(go.Scatter(x=T_celsius, y=dg_co_eff, name="CO/CO2", line=dict(dash='dot', color='red')))
-h_co2, s_co2 = get_thermo_values(df, "CO2", "g")For='red')))
+
 
 fig.update_layout(
     title="Richardson-Ellingham Diagram (normalized to 1 Mol O₂)",
@@ -186,5 +186,6 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
 
 
