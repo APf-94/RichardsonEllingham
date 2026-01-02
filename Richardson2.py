@@ -168,7 +168,12 @@ if h_h2o:
     dg_h2_eff = (2*h_h2o - 2*0) - T_kelvin*(2*s_h2o - 2*s_h2 - s_o2) + R * T_kelvin * np.log((1/h2_ratio)**2)
     fig.add_trace(go.Scatter(x=T_celsius, y=dg_h2_eff, name="H2/H2O", line=dict(dash='dash', color='blue')))
 
+
 h_co, s_co = get_thermo_values(df, "CO", "g")
+h_co2, s_co2 = get_thermo_values(df, "CO2", "g")
+if h_co2:
+    dg_co_eff = (2*h_co2 - 2*h_co) - T_kelvin*(2*s_co2 - 2*s_co - s_o2) + R * T_kelvin * np.log((1/co_ratio)**2)
+    fig.add_trace(go.Scatter(x=T_celsius, y=dg_co_eff, name="CO/CO2", line=dict(dash='dot', color='red')))
 h_co2, s_co2 = get_thermo_values(df, "CO2", "g")For='red')))
 
 fig.update_layout(
@@ -181,4 +186,5 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
 
