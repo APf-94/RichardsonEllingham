@@ -220,10 +220,6 @@ else:
     st.sidebar.download_button("Diagramm als PNG exportieren", data=img_bytes, 
                                file_name="ellingham_diagramm.png", mime="image/png")
 
-else:
-
-    st.info("Bitte lade die Datei 'NBS_Tables Library.xlsx' hoch, um die Berechnungen zu starten.")
-
 
 
 
