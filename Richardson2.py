@@ -216,9 +216,10 @@ else:
     st.plotly_chart(fig, use_container_width=True)
 
     # Export Sektion
-    img_bytes = fig.to_image(format="png", width=1200, height=800)
-    st.sidebar.download_button("Diagramm als PNG exportieren", data=img_bytes, 
-                               file_name="ellingham_diagramm.png", mime="image/png")
+    #img_bytes = fig.to_image(format="png", width=1200, height=800)
+    #st.sidebar.download_button("Diagramm als PNG exportieren", data=img_bytes, 
+    #                           file_name="ellingham_diagramm.png", mime="image/png")
+
 
 
 
