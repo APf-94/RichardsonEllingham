@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import io
 
 # --- Seite konfigurieren ---
-st.set_page_config(page_title="Richardson-Ellingham Diagramm Profi", layout="wide")
+st.set_page_config(page_title="Richardson-Ellingham Diagram", layout="wide")
 
 # --- Physikalische Konstanten & Phasenübergänge ---
 # Tm = Schmelzpunkt [K], Tb = Siedepunkt [K]
@@ -97,8 +97,9 @@ def calculate_dg_with_phases(T_array, dH_298, dS_298, metal_key, n_m):
     return np.array(dg_values)
 
 # --- Hauptprogramm ---
-st.title("Richardson-Ellingham Diagramm Generator")
-st.markdown("Interaktive Thermodynamik basierend auf NBS-Tabellen.")
+st.title("Richardson-Ellingham Diagram Generator")
+st.markdown("Data based on NBS-Tables.")
+st.markdown("by. Dr. Andreas Pfeiffer")
 
 GITHUB_URL = f"https://github.com/APf-94/RichardsonEllingham/raw/refs/heads/main/NBS_Tables_Library.xlsx"
 
@@ -143,17 +144,17 @@ else:
     }
 
     # Sidebar Auswahl
-    selected = st.sidebar.multiselect("Oxide einblenden:", list(rxn_dict.keys()), 
+    selected = st.sidebar.multiselect("Oxides:", list(rxn_dict.keys()), 
                                       default=["2Fe + O2 -> 2FeO", "2C + O2 -> 2CO", "2CO + O2 -> 2CO2"])
     
     st.sidebar.markdown("---")
-    st.sidebar.subheader("Gleichgewichts-Gase (logarithmisch)")
+    st.sidebar.subheader("Eq-Gases (logarithmisch)")
 
     # Wir wählen den Exponenten von -10 bis +10
-    log_h2 = st.sidebar.slider("H2 / H2O Verhältnis (10^x)", -10.0, 10.0, 0.0, step=0.1)
+    log_h2 = st.sidebar.slider("H2 / H2O ratio (10^x)", -10.0, 10.0, 0.0, step=0.1)
     h2_ratio = 10**log_h2
 
-    log_co = st.sidebar.slider("CO / CO2 Verhältnis (10^x)", -10.0, 10.0, 0.0, step=0.1)
+    log_co = st.sidebar.slider("CO / CO2 ratio (10^x)", -10.0, 10.0, 0.0, step=0.1)
     co_ratio = 10**log_co
 
     # Anzeige der aktuellen Werte für den User
@@ -204,7 +205,7 @@ else:
 
     # Layout Verschönerung
     fig.update_layout(
-        title="Richardson-Ellingham Diagramm (auf 1 Mol O₂ normiert)",
+        title="Richardson-Ellingham Diagram (normalized to 1 Mol O₂)",
         xaxis_title="Temperatur [°C]",
         yaxis_title="ΔG° [kJ / mol O₂]",
         hovermode="x unified",
@@ -219,6 +220,7 @@ else:
     #img_bytes = fig.to_image(format="png", width=1200, height=800)
     #st.sidebar.download_button("Diagramm als PNG exportieren", data=img_bytes, 
     #                           file_name="ellingham_diagramm.png", mime="image/png")
+
 
 
 
