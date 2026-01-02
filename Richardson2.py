@@ -88,6 +88,7 @@ def calculate_dg_with_phases(T_array, dH_298, dS_298, metal_key, n_m):
 # --- Hauptprogramm ---
 st.title("Richardson-Ellingham Diagram Generator")
 st.markdown("Data based on NBS-Tables. | by Dr. Andreas Pfeiffer")
+st.markdown("Disclaimer: All information is provided without guarantee. No responsibility is taken for the accuracy, completeness, or timeliness of the content.")
 
 # GitHub Link Korrektur
 GITHUB_URL = "https://github.com/APf-94/RichardsonEllingham/raw/refs/heads/main/NBS_Tables_Library.xlsx"
@@ -168,10 +169,7 @@ if h_h2o:
     fig.add_trace(go.Scatter(x=T_celsius, y=dg_h2_eff, name="H2/H2O", line=dict(dash='dash', color='blue')))
 
 h_co, s_co = get_thermo_values(df, "CO", "g")
-h_co2, s_co2 = get_thermo_values(df, "CO2", "g")
-if h_co2:
-    dg_co_eff = (2*h_co2 - 2*h_co) - T_kelvin*(2*s_co2 - 2*s_co - s_o2) + R * T_kelvin * np.log((1/co_ratio)**2)
-    fig.add_trace(go.Scatter(x=T_celsius, y=dg_co_eff, name="CO/CO2", line=dict(dash='dot', color='red')))
+h_co2, s_co2 = get_thermo_values(df, "CO2", "g")For='red')))
 
 fig.update_layout(
     title="Richardson-Ellingham Diagram (normalized to 1 Mol O₂)",
@@ -183,3 +181,4 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
